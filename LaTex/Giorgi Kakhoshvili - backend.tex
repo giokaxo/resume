@@ -1,0 +1,134 @@
+% Resume of Giorgi Kakhoshvili (Backend version)
+% Build: pdflatex Giorgi_Kakhoshvili_Resume_Backend.tex   (or latexmk -pdf Giorgi_Kakhoshvili_Resume_Backend.tex)
+%
+% How to edit:
+%   \role{Title}{Company}{https://company.url}{Note}{Dates}
+%       Note is shown bold in parentheses, e.g. Remote; leave {} empty to hide it.
+%       Company URL can be {} for no link.
+%   Bullets go in an itemize right under each \role.
+%   \resumesection{Name} starts a new section.
+
+\documentclass[10pt]{article}
+\usepackage[a4paper,top=14mm,bottom=16mm,left=17.6mm,right=17.6mm,footskip=8mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[letterspace=150]{microtype}
+\usepackage{xcolor}
+\definecolor{linkblue}{HTML}{1F3A93}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\scriptsize\itshape The most recent version of this resume is available at \weblink{https://github.com/giokaxo/resume}{github.com/giokaxo/resume}}
+
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=5mm,label={\tiny\textbullet},itemsep=1pt,topsep=1pt,parsep=0pt}
+
+\newcommand{\weblink}[2]{\href{#1}{\textcolor{linkblue}{\underline{#2}}}}
+\newcommand{\resumesection}[1]{\vspace{9pt}{\small\bfseries\textls{\MakeUppercase{#1}}}\par\vspace{3pt}}
+% \role{title}{company}{url}{note}{dates}
+\newcommand{\role}[5]{%
+  \vspace{5pt}\par\noindent
+  {\normalsize #1\ifx&#2&\else\ @\ifx&#3&#2\else\weblink{#3}{#2}\fi\fi\ifx&#4&\else\ \textbf{(#4)}\fi}%
+  \hfill{\footnotesize #5}\par\nopagebreak\vspace{1pt}}
+
+\begin{document}
+\small
+
+{\Large\bfseries Giorgi Kakhoshvili}\ {\large @giokaxo} \hfill Barcelona, Spain\par
+\vspace{3pt}
+Email: \textbf{giokaxo@gmail.com} \hfill {\footnotesize
+@\weblink{https://github.com/giokaxo}{Github}
+@\weblink{https://twitter.com/giokaxo}{Twitter}
+@\weblink{https://www.linkedin.com/in/giorgi-kakhoshvili/}{LinkedIn}
+@\weblink{https://leetcode.com/u/giokaxo/}{LeetCode}}\par
+
+\resumesection{Summary}
+Software engineer with 12 years of experience, now Team Lead at Rebilly (payments infrastructure), where my team owns identity, access control and API keys. I build the layer between backend systems and the UI: authentication, authorization, API key security and asynchronous provisioning, in PHP/Symfony on MySQL, PostgreSQL and Redis. A long frontend background means I design APIs around how interfaces actually consume them.\par
+
+\resumesection{Skills}
+\textbf{Backend:} PHP (Symfony, Symfony Messenger, Doctrine ORM), REST APIs, OpenAPI, WebSockets, Go\par
+\textbf{Data and infrastructure:} MySQL, PostgreSQL, Redis, ClickHouse, Elasticsearch, AWS SQS, Terraform\par
+\textbf{Identity and security:} OAuth 2.0 / OIDC, Keycloak, Better Auth, ACL and roles, API key lifecycle\par
+\textbf{Operations:} GitHub Actions, Jenkins, Datadog, flag-gated rollouts\par
+\textbf{AI-assisted development:} Claude Code (primary) and Cursor; scoping work for agents, reviewing and testing generated code before it ships\par
+\textbf{Frontend:} TypeScript, Vue 3, Pinia, Svelte, Tailwind\par
+
+\resumesection{Experience}
+
+\role{Team Lead}{Rebilly}{https://www.rebilly.com/}{Remote}{Sep 2026 - Present}
+\begin{itemize}
+  \item Lead the team that owns identity and accounts: organizations, sign-in, users and memberships, ACL and roles, API keys, custom fields, tags and email.
+  \item Moved authentication from \textbf{Keycloak} to \textbf{Better Auth} in about a week.
+  \item Hardened API key security: audited incident-response tooling with dry-run mode, key expiration, usage tracking, and per-key rate limits rolled out behind a flag.
+\end{itemize}
+
+\role{Senior Software Engineer}{Rebilly}{https://www.rebilly.com/}{Remote}{2022 - Sep 2026}
+\begin{itemize}
+  \item Designed and shipped organization IP allowlists end to end (API, SDK, dashboard, docs), with a guard against admins locking themselves out and no breakage for existing integrations.
+  \item Closed ACL gaps and made permission checks scale to users with thousands of memberships.
+  \item Built idempotent asynchronous provisioning between two services over \textbf{AWS SQS}.
+  \item Built \textbf{Keycloak} support in the core backend and dashboard: registration settings synced to realms through the admin API, and narrowly scoped service-to-service \textbf{OIDC} auth provisioned with \textbf{Terraform}.
+  \item Migrated Rebilly's shared Vue component library (about 26k lines) and FramePay to \textbf{TypeScript}, and built a TypeScript SDK generator from the \textbf{OpenAPI} spec.
+\end{itemize}
+
+\role{Front End Engineer}{Flightradar24}{https://flightradar24.com}{Remote}{2021 - 2022}
+\begin{itemize}
+  \item Helped design and build the architecture of the new Flightradar24 website in \textbf{Vue.js}, \textbf{TypeScript} and \textbf{Tailwind}.
+\end{itemize}
+
+\role{Front End Team Lead}{FortuneJack}{https://fortunejack.com}{}{2019 - 2021}
+\begin{itemize}
+  \item Built a server-driven template system that let the team change page UI without a developer.
+  \item Wrote internal APIs in \textbf{Go} and \textbf{PHP} and standardized existing endpoints as REST.
+  \item Added real-time updates for user events over \textbf{WebSockets}.
+  \item Designed the architecture of the new fortunejack.com, led its development, and introduced \textbf{Git-flow} for releases.
+\end{itemize}
+
+\role{Front End Team Lead}{Livo}{https://livo.ge}{}{2019 (6 months)}
+\begin{itemize}
+  \item Led five developers building a real estate platform for a subsidiary of Georgia's largest bank, plus internal tools for its support and call center teams.
+\end{itemize}
+
+\role{Front End Engineer}{FortuneJack}{https://fortunejack.com}{}{2018 - 2019 (7 months)}
+\begin{itemize}
+  \item Finished the mobile version of fortunejack.com and turned the site into a \textbf{PWA}.
+\end{itemize}
+
+\role{Front End Developer}{Betsson Group}{https://www.betssongroup.com/}{Europebet}{2018 - 2019 (7 months)}
+\begin{itemize}
+  \item Built the rendering and lobby libraries shared by Europebet's PvP games (Backgammon, Bura, Keno).
+\end{itemize}
+
+\role{Full Stack Developer}{Proservice}{https://proservice.ge}{}{2015 - 2017}
+\begin{itemize}
+  \item Built web applications for clients and moved the company's in-house CMS to \textbf{Vue.js}.
+\end{itemize}
+
+\role{Full Stack Developer}{Absolute}{}{}{2014 - 2015}
+\begin{itemize}
+  \item Built a complete food delivery platform, similar to Wolt or Glovo, covering both backend and frontend.
+\end{itemize}
+
+\resumesection{Part-time and freelance}
+
+\role{Front End Consultant (Part-time)}{Connect}{https://connect.ge}{}{2019 - 2021}
+\begin{itemize}
+  \item Helped the team adopt \textbf{Vue.js}, improved page speed, and built the frontend of a new CMS.
+\end{itemize}
+
+\role{Trainer}{Mziuri}{http://mziuri.ge/}{}{2019 - 2021}
+\begin{itemize}
+  \item Mentored several cohorts through a web development bootcamp.
+\end{itemize}
+
+\role{Freelance}{}{}{}{}
+\begin{itemize}
+  \item Built and launched 15+ client projects over 12 years.
+\end{itemize}
+
+\end{document}
